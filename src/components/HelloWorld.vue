@@ -32,10 +32,20 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Component',
   props: {
-    msg: String
-  }
+    test: {
+      type: String,
+    }
+  },
+  sockets: {
+        connect: function () {
+            console.log('socket connected')
+        },
+        nachrichtenname: function () {
+            console.log('this method was fired by the socket server. eg: io.emit("nachrichtenname", data)')
+        }
+  } 
 }
 </script>
 
