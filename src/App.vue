@@ -1,16 +1,27 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome"/>
+    <RobotControlView>
+      <template v-slot:videocomponent>
+        <VideoPlayer></VideoPlayer>
+      </template>
+      <template v-slot:controlcomponent>
+        <Controls></Controls>
+      </template>
+    </RobotControlView>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import RobotControlView from './components/RobotControlView.vue'
+import Controls from './components/ControlsComponent.vue'
+import VideoPlayer from "./components/VideoPlayerComponent";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    RobotControlView,
+    Controls,
+    VideoPlayer,
   }
 }
 </script>

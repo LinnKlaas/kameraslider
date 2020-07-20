@@ -1,5 +1,5 @@
 <template> 
-<div>
+  <div>
     <b-button v-on:click="moveLeft()"><b-icon icon="chevron-left" variant="success"></b-icon> links</b-button>
 
       <svg width="8em" height="3em" viewBox="0 0 16 16" class="bi bi-camera-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -12,7 +12,7 @@
     <b-button v-on:click="moveLeft()"><b-icon icon="chevron-left" variant="success"></b-icon> links</b-button>
     <b-button v-on:click="moveRight()">rechts <b-icon icon="chevron-right" variant="success"></b-icon></b-button>
   
-</div>
+  </div>
 </template>
 
 <script>
