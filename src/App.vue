@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import RobotControlView from './components/RobotControlView.vue'
+import RobotControlView from './views/RobotControlView.vue'
 import Controls from './components/ControlsComponent.vue'
 import VideoPlayer from "./components/VideoPlayerComponent";
 
