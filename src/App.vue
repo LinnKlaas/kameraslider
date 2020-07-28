@@ -1,27 +1,29 @@
 <template>
   <div id="app">
-    <RobotControlView>
+    <Layout streamUrl="http://192.168.178.42:8080/stream.mjpg">
       <template v-slot:videocomponent>
-        <VideoPlayer></VideoPlayer>
       </template>
       <template v-slot:controlcomponent>
         <Controls></Controls>
       </template>
-    </RobotControlView>
+      <template v-slot:queuecomponent>
+        <SimpleQueueComponent></SimpleQueueComponent>
+      </template>
+    </Layout>
   </div>
 </template>
 
 <script>
-import RobotControlView from './views/RobotControlView.vue'
+import Layout from './submodules/base_layout/src/components/interface.vue'
 import Controls from './components/ControlsComponent.vue'
-import VideoPlayer from "./components/VideoPlayerComponent";
+import SimpleQueueComponent from './components/SimpleQueueComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    RobotControlView,
+    Layout,
     Controls,
-    VideoPlayer,
+    SimpleQueueComponent,
   }
 }
 </script>

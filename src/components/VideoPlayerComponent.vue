@@ -15,7 +15,7 @@
             srcurl: {
                 type: String,
                 //CHANGEME: hier (vorerst) lokale IP-Adresse des Pi eintragen!
-                default: "http://hal.hfg.design:10000/linnbot_control"
+                default: "http://192.168.178.42:8080/stream.mjpg"
             }
         }
     }
