@@ -39,12 +39,10 @@ export default {
             moveSliderLeft: function () {
                 console.log("Moving slider to the left");
                 this.$socket.emit('controlSlider', -200);
-                this.sliderPos +=2;
             },
             moveSliderRight: function () {
                 console.log("Moving slider to the right");
                 this.$socket.emit('controlSlider', 200);
-                this.sliderPos -=2;
             }
         },
 
@@ -64,6 +62,8 @@ export default {
                 console.log("NSPs:" + data);
             },
             serialresponse: function(data) {
+                this.sliderPos = data/4;
+
                 if (data === "rechts") {
                     this.buttonState = "rechts"
                 } 

@@ -15,7 +15,7 @@
             srcurl: {
                 type: String,
                 //CHANGEME: hier (vorerst) lokale IP-Adresse des Pi eintragen!
-                default: "http://192.168.178.42:8080/stream.mjpg"
+                default: "https://hal.hfg.design:50005/live-20580.mjpg"
             }
         }
     }
