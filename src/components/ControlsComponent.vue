@@ -19,6 +19,8 @@
       </div>
 
     <b-button v-on:click="moveSliderRight()" :disabled="!connected || buttonState === 'rechts' || !$store.getters.amIActive">rechts <b-icon icon="chevron-right" variant="success"></b-icon></b-button>
+
+
     <br>
     Override Key: <input type="text" v-model="overridePW" v-on:change="authorize"> 
   </div>
@@ -45,9 +47,12 @@ export default {
             moveSliderRight: function () {
                 console.log("Moving slider to the right");
                 this.$socket.emit('controlSlider', 200);
+
+
             },
             authorize: function() {
                 this.$socket.emit('authorize', this.overridePW);
+
             }
         },
 
@@ -67,7 +72,10 @@ export default {
                 console.log("NSPs:" + data);
             },
             serialresponse: function(data) {
+                this.sliderPos = data/4;
+
                 this.sliderPos = data/50;
+
 
                 if (data === "rechts") {
                     this.buttonState = "rechts"
@@ -79,6 +87,8 @@ export default {
                     this.buttonState = ""
                 }
 
+
+
             },
             authorized: function(data) {
                 this.authorized = data;
@@ -89,6 +99,8 @@ export default {
                 connected: false,
                 buttonState: "",
                 sliderPos: 4,
+
+
                 overridePW: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnCK1GPSpmhd/Vo8lRNcU6357mT5bITJE1zUd1BbzvK23FExBQ8UvmkFudXLGdt2N81XeJUFJ42UmN0JDg4mkJmt9nUtXc3OdwgHjikPlrLcTW6BraIFSMqe8tA0kFVZEvfH09b5dFMWkB4QDZWSh/I8zwSrKKJOAQZ0k+fKmhNlwk/6BqpcM8E78BkGOl35ydMFFSSpOPQxc5IlpNmWEY0HW6Oynpd4fNfu7xWkWSY6rZSFeILgPKC/2cGI+Ano85t4dOaAWMDnh0sl1mNy/4u2QlBGrE90PwXju7g7s+vlNT9OavEP97ZOiHFUdLBWwK+jljlSUkSnUAAwEgxqIr pi@flobot",
                 authorized: false
             }
