@@ -14,7 +14,7 @@
     <b-button v-on:click="moveSliderLeft()" :disabled="!connected || buttonState === 'links' || !$store.getters.amIActive"><b-icon icon="chevron-left" variant="success"></b-icon> links</b-button>
  
       <div class="slider-visualization">
-        <div class="slider-car" :style="{right: sliderPos +'px'}"></div>
+        <div class="slider-car" :style="{left: sliderPos +'px'}"></div>
         <div class="slider-base"></div>
       </div>
 
@@ -42,13 +42,11 @@ export default {
             },
             moveSliderLeft: function () {
                 console.log("Moving slider to the left");
-                this.$socket.emit('controlSlider', -200);
+                this.$socket.emit('controlSlider', 200);
             },
             moveSliderRight: function () {
                 console.log("Moving slider to the right");
-                this.$socket.emit('controlSlider', 200);
-
-
+                this.$socket.emit('controlSlider', -200);
             },
             authorize: function() {
                 this.$socket.emit('authorize', this.overridePW);
@@ -72,22 +70,18 @@ export default {
                 console.log("NSPs:" + data);
             },
             serialresponse: function(data) {
-                this.sliderPos = data/4;
-
-                this.sliderPos = data/50;
-
-
                 if (data === "rechts") {
                     this.buttonState = "rechts"
+                    this.sliderPos = -4.5;
                 } 
                 else if (data === "links") {
                     this.buttonState = "links"
+                    this.sliderPos = 4.5;
                 }
-                else if (data === "alles ok") {
-                    this.buttonState = ""
+                else {
+                    this.buttonState = "",
+                    this.sliderPos = data/-44;
                 }
-
-
 
             },
             authorized: function(data) {
@@ -98,7 +92,7 @@ export default {
             return {
                 connected: false,
                 buttonState: "",
-                sliderPos: 4,
+                sliderPos: 0,
 
 
                 overridePW: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnCK1GPSpmhd/Vo8lRNcU6357mT5bITJE1zUd1BbzvK23FExBQ8UvmkFudXLGdt2N81XeJUFJ42UmN0JDg4mkJmt9nUtXc3OdwgHjikPlrLcTW6BraIFSMqe8tA0kFVZEvfH09b5dFMWkB4QDZWSh/I8zwSrKKJOAQZ0k+fKmhNlwk/6BqpcM8E78BkGOl35ydMFFSSpOPQxc5IlpNmWEY0HW6Oynpd4fNfu7xWkWSY6rZSFeILgPKC/2cGI+Ano85t4dOaAWMDnh0sl1mNy/4u2QlBGrE90PwXju7g7s+vlNT9OavEP97ZOiHFUdLBWwK+jljlSUkSnUAAwEgxqIr pi@flobot",
@@ -128,7 +122,7 @@ export default {
         width: 25px;
         background-color: #f9cb30;
         position: relative;
-        float: right;
+        float: left;
         bottom: 0px;
   }
 </style>
