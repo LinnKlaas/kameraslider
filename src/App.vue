@@ -1,16 +1,29 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome"/>
+    <Layout streamUrl="https://hal.hfg.design:50005/live-20580.mjpg">
+      <template v-slot:videocomponent>
+      </template>
+      <template v-slot:controlcomponent>
+        <Controls></Controls>
+      </template>
+      <template v-slot:queuecomponent>
+        <SimpleQueueComponent></SimpleQueueComponent>
+      </template>
+    </Layout>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Layout from './submodules/base_layout/src/components/interface.vue'
+import Controls from './components/ControlsComponent.vue'
+import SimpleQueueComponent from './components/SimpleQueueComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Layout,
+    Controls,
+    SimpleQueueComponent,
   }
 }
 </script>
